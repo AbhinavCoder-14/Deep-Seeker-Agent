@@ -9,11 +9,14 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain.chat_models import init_chat_model
 from langchain_core.tools import tool
+from langgraph.checkpoint.memory import MemorySaver
 
 load_dotenv()
 # normal chatBot
 llm = ChatGroq(model="openai/gpt-oss-120b")
 llm = init_chat_model("groq:openai/gpt-oss-120b")
+
+memory = MemorySaver()
 
 
 def chatbot(state:State):
@@ -99,7 +102,12 @@ graph_builder.add_edge("tools","llm_agent")
 # graph_builder.add_edge("llm_agent",END)   
 
 
-graph = graph_builder.compile() 
+graph = graph_builder.compile(checkpointer=memory) 
+
+config = {
+    "configurable":{"thread_id":"1"}
+}
+
 
 
 from IPython.display import Image,display
@@ -114,9 +122,18 @@ try:
     with open("graph.png", "wb") as f:
         f.write(png_bytes)
     print("Graph saved as graph.png")
-    res = graph.invoke({"messages":"what is the resent ai news?"})
+    res = graph.invoke({"messages":"what is the resent ai news?"},config=config)
     final_answer = res["messages"][-1].content
     print(final_answer.encode(sys.stdout.encoding, errors='replace').decode(sys.stdout.encoding))
+    
+    for m in res["messages"]:
+        print(m.pretty_print())
+        
+        
+    
+    
+    
+    
 except Exception as e:
     print(f"Error generating graph: {e}")
     
