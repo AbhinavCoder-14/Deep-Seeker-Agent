@@ -4,13 +4,47 @@ from prompt_library.prompt import SYSTEM_PROMPT
 from langgraph.prebuilt import ToolNode,tools_condition 
 from langgraph.graph import START,END, MessagesState,StateGraph
 
+from tools.weather_info_tool import WeatherInfoTool
+from tools.place_search_tools import PlaceSearchTool
+from tools.calculator_tools import CalculatorTool
+from tools.currency_converter_tools import CurrencyConverterTool
+
 
 
 
 
 class GraphBuilder():
     
-    def __init__(self):
+    def __init__(self,model_provider:str="groq"): # constructor
+        
+        
+        self.model_loader = ModelLoader(model_Provider=model_provider)
+        self.llm = self.model_loader.load_llm()
+        
+        self.tools = []
+        
+        self.weatherInfoTool = WeatherInfoTool()
+        self.placeSearchTool = PlaceSearchTool()
+        self.calculatorTool = CalculatorTool()
+        self.currencyConverterTool = CurrencyConverterTool()
+        
+        
+        
+        self.tools.extend([self.weatherInfoTool.weather_tool_list,self.placeSearchTool.searchTool,self.calculatorTool.calculate,self.currencyConverterTool.CurrencyConverter])
+        
+        
+        
+        self.llm_with_tools = self.llm.bind_tools(tools=self.tools)
+        self.graph =None
+        
+        
+        
+        
+        
+        
+        
+        
+        
         self.system_prompt = SYSTEM_PROMPT
     
     

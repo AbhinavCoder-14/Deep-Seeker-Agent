@@ -3,6 +3,7 @@ import re
 from typing import Any,Dict, List
 from dotenv import load_dotenv
 from langchain.tools import tool
+from langchain_core.utils import get_from_env
 
 from utils.weather_info import WeatherForcastTool
 
@@ -37,12 +38,22 @@ class WeatherInfoTool:
         
         
         @tool
-        def get_weather_forecast(city:str):
-            """Get Weather Forecast of the city"""
-            
-            forecast_Data = self.weather_service.get_forecast_weather(city)
-            if(forecast_Data):
-                pass
+        def get_weather_forecast(city: str) -> str:
+            """Get weather forecast for a city"""
+            forecast_data = self.weather_service.get_forecast_weather(city)
+            if forecast_data and 'list' in forecast_data:
+                forecast_summary = []
+                for i in range(len(forecast_data['list'])):
+                    item = forecast_data['list'][i]
+                    date = item['dt_txt'].split(' ')[0]
+                    temp = item['main']['temp']
+                    desc = item['weather'][0]['description']
+                    forecast_summary.append(f"{date}: {temp} degree celcius , {desc}")
+                return f"Weather forecast for {city}:\n" + "\n".join(forecast_summary)
+            return f"Could not fetch forecast for {city}"
+        
+        
+        return [get_current_weather,get_weather_forecast]
             
             
             

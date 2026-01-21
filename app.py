@@ -13,8 +13,6 @@ class QueryRequest(BaseModel):
     
     
 @app.post("/query")
-
-
 async def query_travel_agent(query:QueryRequest):
     try:
         print(query)
