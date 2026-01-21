@@ -1,9 +1,8 @@
 import os
-import re
+import requests
 from typing import Any,Dict, List
 from dotenv import load_dotenv
 from langchain.tools import tool
-from langchain_core.utils import get_from_env
 
 from utils.weather_info import WeatherForcastTool
 
