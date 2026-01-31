@@ -1,8 +1,8 @@
 llm:
   google:
-    provider:"google"
-    model_name:"gemini-flash-2.5"
+    provider: "google"
+    model_name: "gemini-flash-2.5"
   groq:
-    provider:"groq"
-    model_name:"deepseek-r1-distill-llama-70b"
+    provider: "groq"
+    model_name: "deepseek-r1-distill-llama-70b"
 

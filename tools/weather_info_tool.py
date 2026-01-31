@@ -18,7 +18,7 @@ class WeatherInfoTool:
         self.weather_tool_list = self._setup_tools()
         
     
-    def _setup_tools(self)->List:
+    def _setup_tools(self)->Dict:
         """
         Setup all tools for the weather forecast tool
         """
@@ -26,13 +26,13 @@ class WeatherInfoTool:
         def get_current_weather(city:str)->str:
             """Get current weather for a city"""
             
-            weather_Data = self.weather_services.get_current_weather(city)
+            weather_Data = self.weather_service.get_current_weather(city)
             if weather_Data:
                 temp = weather_Data.get("main",{}).get("temp","N/A")
                 desc = weather_Data.get("weather",[{}])[0].get("description","N/A")
                 return f"Current weather of {city} is {temp}, {desc}"
             
-            return f"count fetch the weather of {city}"
+            return f"Couldn't fetch the weather of {city}"
         
         
         
@@ -52,7 +52,7 @@ class WeatherInfoTool:
             return f"Could not fetch forecast for {city}"
         
         
-        return [get_current_weather,get_weather_forecast]
+        return {"get_current_weather": get_current_weather, "get_weather_forecast": get_weather_forecast}
             
             
             

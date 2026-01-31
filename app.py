@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from agent.agentic_workflow import GraphBuilder
+from Agent.agentic_workflow import GraphBuilder
 from utils.save_to_document import save_document
 from starlette.responses import JSONResponse
 import os
@@ -37,7 +37,7 @@ async def query_travel_agent(query:QueryRequest):
             
         print(f"Graph saved as 'my_graph.png' in {os.getcwd()}")
         
-        messages={"messages": [query.question]}
+        messages={"messages": [query.query]}
         output = react_app.invoke(messages)
 
         
@@ -51,3 +51,9 @@ async def query_travel_agent(query:QueryRequest):
     
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+    
+    
+    
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Travel Agent API"}
