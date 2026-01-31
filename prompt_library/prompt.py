@@ -25,7 +25,5 @@ SYSTEM_PROMPT = SystemMessage(
     """
     
     
-    
-    
 
 )

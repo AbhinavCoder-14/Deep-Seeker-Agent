@@ -5,7 +5,7 @@ from utils.currency_converter import CurrencyConverter
 
 class CurrencyConverterTool():
     def __init__(self) -> None:
-        self.api_key = os.environ.get("OPENWEATHER_API_KEY")
+        self.api_key = os.environ.get("EXCHANGE_RATE_API_KEY")
         self.currencyconverter = CurrencyConverter(api_key=self.api_key)
         
         self.currencyConvertertool = self._setup_tools

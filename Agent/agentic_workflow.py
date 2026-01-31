@@ -36,15 +36,7 @@ class GraphBuilder():
         
         self.llm_with_tools = self.llm.bind_tools(tools=self.tools)
         self.graph =None
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
         self.system_prompt = SYSTEM_PROMPT
     
     
@@ -63,8 +55,6 @@ class GraphBuilder():
         graph_builder.add_conditional_edges("agent",tools_condition)
         graph_builder.add_edge("tools","agent")
         graph_builder.add_edge("agent",END)
-        
-        
         
         self.graph = graph_builder.compile()
         
