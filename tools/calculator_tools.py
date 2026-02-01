@@ -5,6 +5,7 @@ from langchain.tools import tool
 class CalculatorTool():
     def __init__(self) -> None:
         self.calculation = Calculator()
+        self.calculate = self._setup_tools()
     
     
     def _setup_tools(self):
@@ -28,7 +29,7 @@ class CalculatorTool():
             """
             calculate the daliy expense for the trip
             """
-            
-            return self.calculation.calculate_daily_budget(total_cost,total_day)
-                
+            return self.calculation.divide(total_cost,total_day)
+        
         return [estimate_total_hotel_cost, calculate_total_expense, calculate_daily_expense_budget]
+            

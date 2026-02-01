@@ -15,7 +15,7 @@ from tools.currency_converter_tools import CurrencyConverterTool
 
 class GraphBuilder():
     
-    def __init__(self,model_provider:str="groq"): # constructor
+    def __init__(self,model_provider:str="openai"): # constructor
         
         
         self.model_loader = ModelLoader(model_Provider=model_provider)
@@ -30,7 +30,10 @@ class GraphBuilder():
         
         
         
-        self.tools.extend([self.weatherInfoTool.weather_tool_list,self.placeSearchTool.place_search_tool_list,self.calculatorTool.calculation,self.currencyConverterTool.   currencyConvertertool])
+        self.tools.extend(self.weatherInfoTool.weather_tool_list)
+        self.tools.extend(self.placeSearchTool.place_search_tool_list)
+        self.tools.extend(self.calculatorTool.calculate)
+        self.tools.extend(self.currencyConverterTool.currencyConvertertool)
         
         
         
@@ -62,7 +65,7 @@ class GraphBuilder():
     
     
     def __call__(self):
-        self.build_graph()
+        return self.build_graph()
 
 
 

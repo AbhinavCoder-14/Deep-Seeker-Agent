@@ -18,7 +18,7 @@ class WeatherInfoTool:
         self.weather_tool_list = self._setup_tools()
         
     
-    def _setup_tools(self)->Dict:
+    def _setup_tools(self)->List:
         """
         Setup all tools for the weather forecast tool
         """
@@ -52,7 +52,7 @@ class WeatherInfoTool:
             return f"Could not fetch forecast for {city}"
         
         
-        return {"get_current_weather": get_current_weather, "get_weather_forecast": get_weather_forecast}
+        return [get_current_weather,get_weather_forecast]
             
             
             
