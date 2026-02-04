@@ -4,5 +4,5 @@ llm:
     model_name: "gemini-flash-2.5"
   groq:
     provider: "groq"
-    model_name: "openai/gpt-oss-120b"
+    model_name: "openai/gpt-oss-20b"
 
