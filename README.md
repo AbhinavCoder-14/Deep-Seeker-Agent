@@ -52,6 +52,35 @@ Trip Planner Agent is a full-stack agentic application where a **Python-based LL
 
 ---
 
+
+
+---
+## Screenshots
+
+### 1. Input & Thinking State
+
+The user enters a prompt like *"plan a trip for delhi for 5 days under 50k budget"* and the agent begins reasoning in real time:
+
+![Input & Thinking](screenshots/01_input_thinking.png)
+
+### 2. Generated Itinerary
+
+The agent returns a fully structured day-by-day itinerary with morning / midday / evening activities, hotel suggestions, and per-night costs:
+
+![Itinerary Output](screenshots/02_input_thinking.png)
+
+### 3. Budget Tips & Summary
+
+The response closes with actionable money-saving tips and a side-by-side comparison table of the Classic Tourist vs Off-beat Explorer plans — both well under the ₹50k ceiling:
+
+![Budget Tips & Summary](screenshots/03_input_thinking.png)
+
+> **💡 Adding your own screenshots:** Drop images into a `screenshots/` folder at the repo root and link them the same way above.
+
+
+---
+
+
 ## Architecture
 
 The system is split into two independent services that communicate over HTTP:
@@ -371,27 +400,6 @@ ALLOWED_ORIGINS=http://localhost:5173
 
 ---
 
-## Screenshots
-
-### 1. Input & Thinking State
-
-The user enters a prompt like *"plan a trip for delhi for 5 days under 50k budget"* and the agent begins reasoning in real time:
-
-![Input & Thinking](screenshots/01_input_thinking.png)
-
-### 2. Generated Itinerary
-
-The agent returns a fully structured day-by-day itinerary with morning / midday / evening activities, hotel suggestions, and per-night costs:
-
-![Itinerary Output](screenshots/02_input_thinking.png)
-
-### 3. Budget Tips & Summary
-
-The response closes with actionable money-saving tips and a side-by-side comparison table of the Classic Tourist vs Off-beat Explorer plans — both well under the ₹50k ceiling:
-
-![Budget Tips & Summary](screenshots/03_input_thinking.png)
-
-> **💡 Adding your own screenshots:** Drop images into a `screenshots/` folder at the repo root and link them the same way above.
 
 ---
 
