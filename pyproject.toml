@@ -19,4 +19,4 @@ dependencies = [
     "typing-extensions>=4.15.0",
 ]
 [tool.setuptools]
-packages = ["Agent", "config", "logger", "exception", "prompt_library"]
+packages = ["Agent", "config", "prompt_library", "utils", "tools"]
