@@ -14,7 +14,8 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # set specific origins in prod
+    allow_origins=["http://localhost:3000",
+        "https://trip-planner-agent-pi.vercel.app/"],  # set specific origins in prod
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
